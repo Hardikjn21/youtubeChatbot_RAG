@@ -29,7 +29,7 @@ class RAGPipeline:
                     - Use the context as the primary source.
                     - If the context contains partial information, infer carefully to provide a helpful answer.
                     - If the answer is completely missing from the context, say "I don't know".
-
+                    - keep the answer concise and to the point.
                     Answer:
 
                     """

@@ -6,9 +6,9 @@ def chunk_text(text: str):
   return text_splitter.split_text(text)
 
 def join_docs(docs):
-    return "\n\n".join(
-        f"[Chunk {i}]\n{doc.page_content}" for i, doc in enumerate(docs)
-    )
+    # Just join text without the [Chunk x] labels
+    return "\n".join(doc.page_content for doc in docs)
+
 def printPrompt(message):
     # print(message)
     return message
