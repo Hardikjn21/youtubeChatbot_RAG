@@ -17,7 +17,21 @@ def extract_video_id(url: str) -> str:
 
 def fetch_transcript(video_id: str) -> str:
     try:
-        transcript = YouTubeTranscriptApi.get_transcript(video_id)
-        return " ".join(item["text"] for item in transcript)
+        ytt_api = YouTubeTranscriptApi()
+        transcript = ytt_api.fetch(video_id)
+        if hasattr(transcript, "snippets"):
+            return " ".join(snippet.text for snippet in transcript.snippets)
+        # fallback for older versions (list of dicts)
+        return " ".join(item.get("text", "") for item in transcript)
     except Exception:
         raise TranscriptNotFound("Transcript not found")
+
+if __name__ == "__main__":
+    url = input("Enter YouTube URL: ")
+    try:
+        video_id = extract_video_id(url)
+        print(f"Extracted Video ID: {video_id}")
+        transcript = fetch_transcript(video_id)
+        print(transcript)
+    except (InvalidYouTubeURL, TranscriptNotFound) as e:
+        print(e)
