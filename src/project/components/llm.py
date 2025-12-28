@@ -1,7 +1,7 @@
-from langchain_community.llms import Ollama
+from langchain_ollama import OllamaLLM
 
 def get_llm():
-    return Ollama(model="phi4-mini", temperature=0.2)
+    return OllamaLLM(model="phi4-mini", temperature=0.2)
 
 if __name__ == "__main__":
     llm=get_llm()

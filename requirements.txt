@@ -3,10 +3,6 @@ langchain
 langchain-community
 faiss-cpu
 youtube-transcript-api
-# langchain-embeddings
+langchain_ollama
 langchain-text-splitters
-# langchain-llms
-# langchain-chains
-# langchain-prompts
-# langchain-schema
-# langchain-vectorstores
+# -e .
